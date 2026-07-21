@@ -51,6 +51,14 @@ export default function Home() {
     setChallengeAnswer("");
   };
 
+  const copyScore = async () => {
+    const text = `I scored ${score}/9 on today's Daily Deck (${weekday})`;
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Score copied to clipboard!");
+  };
+
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-xl px-8 text-center">
@@ -286,12 +294,22 @@ export default function Home() {
 
             </div>
 
-            <button
-              onClick={resetGame}
-              className="bg-black text-white px-8 py-4 rounded"
-            >
-              Play Again
-            </button>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={copyScore}
+                className="border px-8 py-4 rounded"
+              >
+                Share Score
+              </button>
+
+              <button
+                onClick={resetGame}
+                className="bg-black text-white px-8 py-4 rounded"
+              >
+                Play Again
+              </button>
+            </div>
+
           </div>
         )}
 
