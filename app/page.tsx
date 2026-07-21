@@ -14,9 +14,25 @@ export default function Home() {
 
   const weekday = today.toLocaleDateString("en-US", {
     weekday: "long",
-  }) as keyof typeof decks;
+  });
 
-  const deck = decks[weekday];
+  const deck = (decks as Record<string, typeof decks[keyof typeof decks]>)[weekday];
+
+  if (!deck) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-white text-black">
+        <div className="w-full max-w-xl px-8 text-center bg-white">
+          <h1 className="text-6xl font-bold mb-4">Daily Deck</h1>
+          <p className="text-gray-500 text-xl mb-2">
+            No deck available for {weekday}
+          </p>
+          <p className="text-gray-400 mb-10">
+            Daily Deck is available on weekdays only. Check back soon.
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   const normalize = (value: string) =>
     value.replace("%", "").replace(/\s/g, "").toLowerCase();

@@ -1,69 +1,94 @@
 export const decks = {
+  Monday: {
+    theme: "Arithmetic",
+
+    warmup: {
+      question: "15 + 27",
+      answer: "42",
+      points: 1,
+    },
+
+    main: {
+      question: "18 × 7",
+      answer: "126",
+      points: 3,
+    },
+
+    challenge: {
+      question: "144 ÷ 12 + 8 × 3",
+      answer: "36",
+      points: 5,
+    },
+  },
+
   Tuesday: {
     theme: "Functions",
 
     warmup: {
-      points: 1,
       question: "Evaluate f(x) = 2x² + 1. Find f(3)",
       answer: "19",
+      points: 1,
     },
 
     main: {
-      points: 3,
-      question: "Solve: 3^x = 27",
+      question: "If f(x) = x² - 6x + 8, find f(5)",
       answer: "3",
+      points: 3,
     },
 
     challenge: {
+      question:
+        "If f(x) = 3x + 1 and g(x) = x², find g(f(2))",
+      answer: "49",
       points: 5,
-      question: "Solve: log₂(x) = 4",
-      answer: "16",
     },
   },
 
   Wednesday: {
-    theme: "Quant Reasoning",
+    theme: "Probability",
 
     warmup: {
+      question:
+        "A fair coin is flipped 4 times. What is the probability of exactly 2 heads?",
+      answer: "3/8",
       points: 1,
-      question: "What number comes next? 1, 4, 9, 16, 25, ?",
-      answer: "36",
     },
 
     main: {
-      points: 3,
       question:
-        "A fair coin is flipped 3 times. What is the probability of exactly 2 heads?",
-      answer: "3/8",
+        "A bag contains 3 red balls and 2 blue balls. One ball is selected at random. What is the probability of selecting a red ball?",
+      answer: "3/5",
+      points: 3,
     },
 
     challenge: {
-      points: 5,
       question:
-        "You roll two fair six-sided dice. What is the probability the sum equals 7?",
-      answer: "1/6",
+        "A fair six-sided die is rolled 3 times. What is the probability all 3 rolls are different?",
+      answer: "5/9",
+      points: 5,
     },
   },
 
   Thursday: {
-    theme: "Advanced Math",
+    theme: "Algebra",
 
     warmup: {
+      question: "Solve for x: 4x - 7 = 21",
+      answer: "7",
       points: 1,
-      question: "Solve: x² = 81",
-      answer: "9,-9",
     },
 
     main: {
+      question: "Solve: x² - 7x + 12 = 0",
+      answer: "3,4",
       points: 3,
-      question: "Evaluate: log₂(32)",
-      answer: "5",
     },
 
     challenge: {
+      question:
+        "If x + 1/x = 4, find x² + 1/x²",
+      answer: "14",
       points: 5,
-      question: "Evaluate: lim(x→2)(x²−4)/(x−2)",
-      answer: "4",
     },
   },
 
@@ -71,24 +96,24 @@ export const decks = {
     theme: "Finance Friday",
 
     warmup: {
-      points: 1,
       question:
-        "$100 invested at 5% annually. What is the value after 1 year?",
-      answer: "105",
+        "You invest $500. It grows by 12%. What is its new value?",
+      answer: "560",
+      points: 1,
     },
 
     main: {
-      points: 3,
       question:
-        "$1,000 invested at 10% annually for 2 years. What is the ending value?",
-      answer: "1210",
+        "A stock rises 25% and then falls 20%. What is the overall return?",
+      answer: "0%",
+      points: 3,
     },
 
     challenge: {
-      points: 5,
       question:
-        "You buy a stock at $40 and sell at $50. What is the percentage return?",
-      answer: "25",
+        "A stock falls 40%. What percentage gain is required to return to breakeven?",
+      answer: "66.67%",
+      points: 5,
     },
   },
 
@@ -96,24 +121,24 @@ export const decks = {
     theme: "Stock Saturday",
 
     warmup: {
-      points: 1,
       question:
-        "A company has 1 million shares outstanding and a stock price of $20. What is the market cap?",
-      answer: "20000000",
+        "A company earns $5 per share. Its stock trades at $75. What is its P/E ratio?",
+      answer: "15",
+      points: 1,
     },
 
     main: {
-      points: 3,
       question:
-        "A stock falls from $100 to $80. What is the percentage loss?",
-      answer: "20",
+        "EPS grows from $2.40 to $3.00. What is the percentage growth?",
+      answer: "25%",
+      points: 3,
     },
 
     challenge: {
-      points: 5,
       question:
-        "A stock falls 20%. What percentage gain is required to get back to breakeven?",
-      answer: "25",
+        "A stock starts at $100. Year 1: +15% Year 2: +20% Year 3: -10%. What is the ending value?",
+      answer: "124.2",
+      points: 5,
     },
   },
 
@@ -121,22 +146,23 @@ export const decks = {
     theme: "Wild Card",
 
     warmup: {
+      question: "Evaluate: 8! ÷ 6!",
+      answer: "56",
       points: 1,
-      question: "Solve: x² − 25 = 0",
-      answer: "5,-5",
     },
 
     main: {
+      question:
+        "How many different ways can 5 people be arranged in a line?",
+      answer: "120",
       points: 3,
-      question: "Evaluate: log₃(81)",
-      answer: "4",
     },
 
     challenge: {
-      points: 5,
       question:
-        "A stock gains 20% one day and loses 20% the next. What is the net return (%)?",
-      answer: "-4",
+        "How many 4-digit numbers can be formed from the digits 1,2,3,4,5 without repeating a digit?",
+      answer: "120",
+      points: 5,
     },
   },
 };
