@@ -66,8 +66,8 @@ https://daily-deck-azure.vercel.app`;
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-xl px-8 text-center">
+    <main className="min-h-screen flex items-center justify-center bg-white text-black">
+      <div className="w-full max-w-xl px-8 text-center bg-white">
         {step > 0 && step < 4 && (
           <div className="mb-10">
             <div className="w-full bg-gray-200 rounded-full h-2">
