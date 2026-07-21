@@ -52,17 +52,22 @@ export default function Home() {
   };
 
   const copyScore = async () => {
-    const text = `I scored ${score}/9 on today's Daily Deck (${weekday})`;
+    const text = `Daily Deck
+${weekday} • ${deck.theme}
+
+Score: ${score}/9
+
+Play here:
+https://daily-deck-azure.vercel.app`;
 
     await navigator.clipboard.writeText(text);
 
-    alert("Score copied to clipboard!");
+    alert("Score and link copied!");
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-xl px-8 text-center">
-
         {step > 0 && step < 4 && (
           <div className="mb-10">
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -249,7 +254,6 @@ export default function Home() {
             </h2>
 
             <div className="space-y-8 text-left max-w-md mx-auto mb-12">
-
               <div>
                 <div className="font-semibold mb-2">
                   Warm-Up {warmupCorrect ? "✓" : "✕"}
@@ -291,7 +295,6 @@ export default function Home() {
                   Correct Answer: {deck.challenge.answer}
                 </div>
               </div>
-
             </div>
 
             <div className="flex justify-center gap-4">
@@ -309,10 +312,8 @@ export default function Home() {
                 Play Again
               </button>
             </div>
-
           </div>
         )}
-
       </div>
     </main>
   );
