@@ -1,65 +1,301 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { decks } from "./decks";
 
 export default function Home() {
+  const [step, setStep] = useState(0);
+
+  const [warmupAnswer, setWarmupAnswer] = useState("");
+  const [mainAnswer, setMainAnswer] = useState("");
+  const [challengeAnswer, setChallengeAnswer] = useState("");
+
+  const today = new Date();
+
+  const weekday = today.toLocaleDateString("en-US", {
+    weekday: "long",
+  }) as keyof typeof decks;
+
+  const deck = decks[weekday];
+
+  const normalize = (value: string) =>
+    value.replace("%", "").replace(/\s/g, "").toLowerCase();
+
+  const warmupCorrect =
+    normalize(warmupAnswer) === normalize(deck.warmup.answer);
+
+  const mainCorrect =
+    normalize(mainAnswer) === normalize(deck.main.answer);
+
+  const challengeCorrect =
+    normalize(challengeAnswer) === normalize(deck.challenge.answer);
+
+  const score =
+    (warmupCorrect ? deck.warmup.points : 0) +
+    (mainCorrect ? deck.main.points : 0) +
+    (challengeCorrect ? deck.challenge.points : 0);
+
+  const resultTitle =
+    score === 9
+      ? "Perfect Score"
+      : score >= 7
+      ? "Strong Showing"
+      : score >= 4
+      ? "Respectable"
+      : "Back to the Books";
+
+  const resetGame = () => {
+    setStep(0);
+    setWarmupAnswer("");
+    setMainAnswer("");
+    setChallengeAnswer("");
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-xl px-8 text-center">
+
+        {step > 0 && step < 4 && (
+          <div className="mb-10">
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="bg-black h-2 rounded-full transition-all duration-300"
+                style={{
+                  width:
+                    step === 1
+                      ? "33%"
+                      : step === 2
+                      ? "66%"
+                      : "100%",
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {step === 0 && (
+          <div>
+            <h1 className="text-6xl font-bold mb-4">
+              Daily Deck
+            </h1>
+
+            <p className="text-gray-500 text-xl mb-2">
+              {weekday} • {deck.theme}
+            </p>
+
+            <p className="text-gray-400 mb-10">
+              9 Points Available Today
+            </p>
+
+            <button
+              onClick={() => setStep(1)}
+              className="bg-black text-white px-8 py-4 rounded text-lg"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              Start
+            </button>
+
+            <p className="mt-10 text-sm text-gray-400">
+              Created by Joshua Sanchez • Beta
+            </p>
+          </div>
+        )}
+
+        {step === 1 && (
+          <div>
+            <p className="text-gray-500 mb-4">
+              Question 1 of 3
+            </p>
+
+            <h2 className="text-4xl font-bold mb-2">
+              Warm-Up
+            </h2>
+
+            <p className="text-gray-500 mb-8">
+              {deck.warmup.points} Point
+            </p>
+
+            <p className="text-xl mb-8">
+              {deck.warmup.question}
+            </p>
+
+            <input
+              value={warmupAnswer}
+              onChange={(e) =>
+                setWarmupAnswer(e.target.value)
+              }
+              className="block border p-4 w-80 mx-auto mb-8 text-center"
+              placeholder="Answer"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+            <button
+              onClick={() => setStep(2)}
+              className="bg-black text-white px-8 py-4 rounded"
+            >
+              Next
+            </button>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div>
+            <p className="text-gray-500 mb-4">
+              Question 2 of 3
+            </p>
+
+            <h2 className="text-4xl font-bold mb-2">
+              Main Set
+            </h2>
+
+            <p className="text-gray-500 mb-8">
+              {deck.main.points} Points
+            </p>
+
+            <p className="text-xl mb-8">
+              {deck.main.question}
+            </p>
+
+            <input
+              value={mainAnswer}
+              onChange={(e) =>
+                setMainAnswer(e.target.value)
+              }
+              className="border p-4 w-80 mx-auto mb-8 text-center"
+              placeholder="Answer"
+            />
+
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setStep(1)}
+                className="border px-8 py-4 rounded"
+              >
+                Back
+              </button>
+
+              <button
+                onClick={() => setStep(3)}
+                className="bg-black text-white px-8 py-4 rounded"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div>
+            <p className="text-gray-500 mb-4">
+              Question 3 of 3
+            </p>
+
+            <h2 className="text-4xl font-bold mb-2">
+              Challenge
+            </h2>
+
+            <p className="text-gray-500 mb-8">
+              {deck.challenge.points} Points
+            </p>
+
+            <p className="text-xl mb-8">
+              {deck.challenge.question}
+            </p>
+
+            <input
+              value={challengeAnswer}
+              onChange={(e) =>
+                setChallengeAnswer(e.target.value)
+              }
+              className="border p-4 w-80 mx-auto mb-8 text-center"
+              placeholder="Answer"
+            />
+
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setStep(2)}
+                className="border px-8 py-4 rounded"
+              >
+                Back
+              </button>
+
+              <button
+                onClick={() => setStep(4)}
+                className="bg-black text-white px-8 py-4 rounded"
+              >
+                Finish
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div>
+            <h1 className="text-5xl font-bold mb-4">
+              {resultTitle}
+            </h1>
+
+            <p className="text-gray-500 mb-10">
+              Daily Deck Complete
+            </p>
+
+            <h2 className="text-3xl font-bold mb-10">
+              Score: {score} / 9
+            </h2>
+
+            <div className="space-y-8 text-left max-w-md mx-auto mb-12">
+
+              <div>
+                <div className="font-semibold mb-2">
+                  Warm-Up {warmupCorrect ? "✓" : "✕"}
+                </div>
+
+                <div className="text-gray-600">
+                  Your Answer: {warmupAnswer || "No Answer"}
+                </div>
+
+                <div className="text-gray-600">
+                  Correct Answer: {deck.warmup.answer}
+                </div>
+              </div>
+
+              <div>
+                <div className="font-semibold mb-2">
+                  Main Set {mainCorrect ? "✓" : "✕"}
+                </div>
+
+                <div className="text-gray-600">
+                  Your Answer: {mainAnswer || "No Answer"}
+                </div>
+
+                <div className="text-gray-600">
+                  Correct Answer: {deck.main.answer}
+                </div>
+              </div>
+
+              <div>
+                <div className="font-semibold mb-2">
+                  Challenge {challengeCorrect ? "✓" : "✕"}
+                </div>
+
+                <div className="text-gray-600">
+                  Your Answer: {challengeAnswer || "No Answer"}
+                </div>
+
+                <div className="text-gray-600">
+                  Correct Answer: {deck.challenge.answer}
+                </div>
+              </div>
+
+            </div>
+
+            <button
+              onClick={resetGame}
+              className="bg-black text-white px-8 py-4 rounded"
+            >
+              Play Again
+            </button>
+          </div>
+        )}
+
+      </div>
+    </main>
   );
 }
