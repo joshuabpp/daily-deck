@@ -49,21 +49,21 @@ export const decks = {
 
   warmup: {
     question:
-      "A data set contains: 1, 2, 3, 4, 100. What is the median?",
+      "1, 2, 3, 4, 100\n\nWhat is the median?",
     answer: "3",
     points: 1,
   },
 
   main: {
     question:
-      "The median of a set of 6 integers is 10.5. The largest number is 15, and the smallest is 3. What is the smallest possible value for the sum of the remaining numbers?",
+      "6 integers have median 10.5.\nSmallest = 3\nLargest = 15\n\nWhat is the smallest possible sum of the other 4 integers?",
     answer: "35",
     points: 3,
   },
 
   challenge: {
     question:
-      "The mean of five numbers is 20. The median is 18. The largest number is 35. What is the smallest possible value of the smallest number?",
+      "5 numbers have mean 20.\nMedian = 18\nLargest = 35\n\nWhat is the smallest possible value of the smallest number?",
     answer: "-6",
     points: 5,
   },
