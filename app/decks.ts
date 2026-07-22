@@ -49,22 +49,22 @@ export const decks = {
 
   warmup: {
     question:
-      "A metric decreases from 8% to 6%. What is the percentage decrease?",
-    answer: "25%",
+      "A data set contains: 1, 2, 3, 4, 100. What is the median?",
+    answer: "3",
     points: 1,
   },
 
   main: {
     question:
-      "30 observations have mean 12. 10 observations have mean 16. What is the overall mean?",
-    answer: "13",
+      "The median of a set of 6 integers is 10.5. The largest number is 15, and the smallest is 3. What is the smallest possible value for the sum of the remaining numbers?",
+    answer: "35",
     points: 3,
   },
 
   challenge: {
     question:
-      "Mean = 78. Standard deviation = 6. Value = 90. How many standard deviations above the mean?",
-    answer: "2",
+      "The mean of five numbers is 20. The median is 18. The largest number is 35. What is the smallest possible value of the smallest number?",
+    answer: "-6",
     points: 5,
   },
 },

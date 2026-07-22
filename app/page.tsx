@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { decks } from "./decks";
 
 export default function Home() {
@@ -9,6 +9,9 @@ export default function Home() {
   const [warmupAnswer, setWarmupAnswer] = useState("");
   const [mainAnswer, setMainAnswer] = useState("");
   const [challengeAnswer, setChallengeAnswer] = useState("");
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const [elapsedTime, setElapsedTime] = useState<number | null>(null);
+  const [finalTime, setFinalTime] = useState<number | null>(null);
 
   const today = new Date();
 
@@ -17,6 +20,15 @@ export default function Home() {
   });
 
   const deck = (decks as Record<string, typeof decks[keyof typeof decks]>)[weekday];
+  useEffect(() => {
+    if (!startTime || step === 4) return;
+
+    const interval = setInterval (() => {
+      setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [startTime, step]);
 
   if (!deck) {
     return (
@@ -60,11 +72,20 @@ export default function Home() {
       ? "Respectable"
       : "Back to the Books";
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  }
+
   const resetGame = () => {
     setStep(0);
     setWarmupAnswer("");
     setMainAnswer("");
     setChallengeAnswer("");
+    setStartTime(null);
+    setElapsedTime(null);
+    setFinalTime(null);
   };
 
   const copyScore = async () => {
@@ -72,6 +93,7 @@ export default function Home() {
 ${weekday} • ${deck.theme}
 
 Score: ${score}/9
+Time: ${formatTime(finalTime ?? 0)}
 
 Play here:
 https://daily-deck-azure.vercel.app`;
@@ -84,6 +106,11 @@ https://daily-deck-azure.vercel.app`;
   return (
     <main className="min-h-screen flex items-center justify-center bg-white text-black">
       <div className="w-full max-w-xl px-8 text-center bg-white">
+        {step > 0 && (
+          <p className="text-gray-500 mb-4">
+            Time: {formatTime(elapsedTime || 0)}
+          </p>
+        )}
         {step > 0 && step < 4 && (
           <div className="mb-10">
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -117,7 +144,11 @@ https://daily-deck-azure.vercel.app`;
             </p>
 
             <button
-              onClick={() => setStep(1)}
+              onClick={() => {
+                setStartTime(Date.now());
+                setElapsedTime(0);
+                setStep(1);
+              }}
               className="bg-black text-white px-8 py-4 rounded text-lg"
             >
               Start
@@ -246,7 +277,10 @@ https://daily-deck-azure.vercel.app`;
               </button>
 
               <button
-                onClick={() => setStep(4)}
+                onClick={() => {
+                  setFinalTime(elapsedTime);
+                  setStep(4);
+                }}
                 className="bg-black text-white px-8 py-4 rounded"
               >
                 Finish
@@ -267,6 +301,9 @@ https://daily-deck-azure.vercel.app`;
 
             <h2 className="text-3xl font-bold mb-10">
               Score: {score} / 9
+              <p className="text=gray-500 mb-10">
+                Time: {formatTime(finalTime ?? 0)}
+              </p>
             </h2>
 
             <div className="space-y-8 text-left max-w-md mx-auto mb-12">
