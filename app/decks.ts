@@ -45,29 +45,29 @@ export const decks = {
   },
 
   Wednesday: {
-    theme: "Probability",
+  theme: "Data Interpretation & Statistics",
 
-    warmup: {
-      question:
-        "A fair coin is flipped 4 times. What is the probability of exactly 2 heads?",
-      answer: "3/8",
-      points: 1,
-    },
-
-    main: {
-      question:
-        "A bag contains 3 red balls and 2 blue balls. One ball is selected at random. What is the probability of selecting a red ball?",
-      answer: "3/5",
-      points: 3,
-    },
-
-    challenge: {
-      question:
-        "A fair six-sided die is rolled 3 times. What is the probability all 3 rolls are different?",
-      answer: "5/9",
-      points: 5,
-    },
+  warmup: {
+    question:
+      "An analyst is tracking customer churn. In Q1, the churn rate was 8%. In Q2, it dropped to 6%. What is the percentage decrease (not percentage point drop) in the churn rate from Q1 to Q2?",
+    answer: "25%",
+    points: 1,
   },
+
+  main: {
+    question:
+      "A production line engineer samples 40 components. The first 30 components have an average weight of 12 grams. The final 10 components have an average weight of 16 grams. What is the weighted average weight (in grams) of all 40 components?",
+    answer: "13",
+    points: 3,
+  },
+
+  challenge: {
+    question:
+      "A customer satisfaction survey has a mean score of 78 and a standard deviation of 6. A customer scores 90. How many standard deviations above the mean is this score?",
+    answer: "2",
+    points: 5,
+  },
+},
 
   Thursday: {
     theme: "Algebra",
