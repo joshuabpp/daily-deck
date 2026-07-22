@@ -49,7 +49,7 @@ export const decks = {
 
   warmup: {
     question:
-      "1, 2, 3, 4, 100\n\nWhat is the median?",
+      "1, 2, 3, 4, 100.\n\nWhat is the median?",
     answer: "3",
     points: 1,
   },
