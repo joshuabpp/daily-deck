@@ -45,25 +45,25 @@ export const decks = {
   },
 
   Wednesday: {
-  theme: "Data Interpretation & Statistics",
+  theme: "Statistics",
 
   warmup: {
     question:
-      "An analyst is tracking customer churn. In Q1, the churn rate was 8%. In Q2, it dropped to 6%. What is the percentage decrease (not percentage point drop) in the churn rate from Q1 to Q2?",
+      "A metric decreases from 8% to 6%. What is the percentage decrease?",
     answer: "25%",
     points: 1,
   },
 
   main: {
     question:
-      "A production line engineer samples 40 components. The first 30 components have an average weight of 12 grams. The final 10 components have an average weight of 16 grams. What is the weighted average weight (in grams) of all 40 components?",
+      "30 observations have mean 12. 10 observations have mean 16. What is the overall mean?",
     answer: "13",
     points: 3,
   },
 
   challenge: {
     question:
-      "A customer satisfaction survey has a mean score of 78 and a standard deviation of 6. A customer scores 90. How many standard deviations above the mean is this score?",
+      "Mean = 78. Standard deviation = 6. Value = 90. How many standard deviations above the mean?",
     answer: "2",
     points: 5,
   },
