@@ -88,8 +88,8 @@ export const decks = {
 
   challenge: {
     question:
-      "If x + y = 8 and xy = 12, find x² + y²",
-    answer: "40",
+      "If 2^x = 64 and 4^y = 64, what is x + y?",
+    answer: "9",
     points: 5,
   },
 },
