@@ -70,27 +70,29 @@ export const decks = {
 },
 
   Thursday: {
-    theme: "Algebra",
+  theme: "Algebra II / Pre-Calc",
 
-    warmup: {
-      question: "Solve for x: 4x - 7 = 21",
-      answer: "7",
-      points: 1,
-    },
-
-    main: {
-      question: "Solve: x² - 7x + 12 = 0",
-      answer: "3,4",
-      points: 3,
-    },
-
-    challenge: {
-      question:
-        "If x + 1/x = 4, find x² + 1/x²",
-      answer: "14",
-      points: 5,
-    },
+  warmup: {
+    question:
+      "What is the next term? 2, 5, 10, 17, 26, ...",
+    answer: "37",
+    points: 1,
   },
+
+  main: {
+    question:
+      "If x - y = 5 and xy = 14, find x² - 2xy + y²",
+    answer: "25",
+    points: 3,
+  },
+
+  challenge: {
+    question:
+      "If x + y = 8 and xy = 12, find x² + y²",
+    answer: "40",
+    points: 5,
+  },
+},
 
   Friday: {
     theme: "Finance Friday",
